@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon.com</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="topnav">
+        <h1>amazon</h1>
+        <p>Deliver to <h3><i class="fa-solid fa-location-dot"></i>India</h3></p>
+        <div class="searchbar">
+            <a><button>Categories</button></a>
+            <input type="text" placeholder="Search Amazon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="language">
+            <button><a><img src="http://www.fotolip.com/wp-content/uploads/2016/05/American-Flag-5.jpg" alt="American Flag"></a></button>
+            <p>En<i class="fa-solid fa-caret-down"></i></p>
+        </div>
+        <div class="signin">
+            <p><a href="{% url 'signup' %}">Hello, sign in</a> <a href="{% url 'login' %}"><h1>Accounts and Lists</h1></a></p>
+            <h3>Return & Orders</h3>
+            <a href="{% url 'cart' %}">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <h3>Cart</h3>
+            </a>
+            
+        </div>
+    </div>
+
+    <!-- Second Navigation -->
+    <div class="secondnav">
+        <div class="heading">
+            <i class="fa-solid fa-ellipsis-vertical" id="sidebar-toggle"></i>
+            <h2>All</h2>
+            <div class="dropdown">
+                <!-- Add content here -->
+                <p>Search for items you like</p>
+            </div>
+            <h2>Today's Deals</h2>
+            <div class="dropdown">
+                <!-- Add content here -->
+                <ul>
+                    <li>Electronics</li>
+                    <li>Home deals</li>
+                </ul>
+            </div>
+            <h2>Customer service</h2>
+            <div class="dropdown">
+                <!-- Add content here -->
+                <p>we be available soon</p>
+            </div>
+            <h2>Registry</h2>
+            <div class="dropdown">
+                <!-- Add content here -->
+                <p>Register</p>
+            </div>
+            <h2>Gift Cards</h2>
+            <div class="dropdown">
+                <!-- Add content here -->
+                <p>Purchase to get gift cards</p>
+            </div>
+            <h2>Sales</h2>
+            <div class="dropdown">
+                <!-- Add content here -->
+                <p>search for purchase</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" id="close-sidebar">&times;</div>
+        <!-- Sidebar content goes here -->
+        <div class="sidebar-content">
+            <a href="{% url 'signup' %}"><h2>Hello signin</h2></a>
+            <h3>Amazon Music</h3>
+            <h3>Kindle E-Readers and book</h3>
+            <h3>Amazon Appstore</h3>
+            <h3>Electronics</h3>
+            <h3>Computers</h3>
+            <h3>Smart Home</h3>
+            <h3>Arts & Crafts</h3>
+            <h3>see all</h3>
+            <h3>Your Account</h3>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price }}</p>
+            <a href="{% url 'add_to_cart' product.id %}" class="add-to-cart">Add to Cart</a>
+            <a href="{% url 'detail' product.id %}">View Details</a>
+        </div>
+        
+        {% endfor %}
+    </div>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <a href="#">Back to top</a>
+        </div>
+        <div class="footer-sections">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">About Amazon</a></li>
+                    <li><a href="#">Investor Relations</a></li>
+                    <li><a href="#">Amazon Devices</a></li>
+                    <li><a href="#">Amazon Science</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="#">Sell on Amazon</a></li>
+                    <li><a href="#">Sell on Amazon Business</a></li>
+                    <li><a href="#">Become an Affiliate</a></li>
+                    <li><a href="#">Advertise Your Products</a></li>
+                    <li><a href="#">Self-Publish with Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Amazon Payment Products</h3>
+                <ul>
+                    <li><a href="#">Amazon Business Card</a></li>
+                    <li><a href="#">Reload Your Balance</a></li>
+                    <li><a href="#">Amazon Currency Converter</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Let Us Help You</h3>
+                <ul>
+                    <li><a href="#">Your Account</a></li>
+                    <li><a href="#">Returns & Replacements</a></li>
+                    <li><a href="#">Shipping Rates & Policies</a></li>
+                    <li><a href="#">Manage Your Content and Devices</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const closeSidebar = document.getElementById('close-sidebar');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+        });
+
+        document.querySelectorAll('.secondnav .heading h2').forEach(h2 => {
+            h2.addEventListener('mouseenter', (e) => {
+                const dropdown = e.target.nextElementSibling;
+                if (dropdown) dropdown.style.display = 'block';
+            });
+            h2.addEventListener('mouseleave', (e) => {
+                const dropdown = e.target.nextElementSibling;
+                if (dropdown && !dropdown.matches(':hover')) dropdown.style.display = 'none';
+            });
+        });
+
+        document.querySelectorAll('.secondnav .dropdown').forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                dropdown.style.display = 'block';
+            });
+            dropdown.addEventListener('mouseleave', () => {
+                dropdown.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

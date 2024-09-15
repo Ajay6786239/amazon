@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - Details</title>
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="topnav">
+        <h1>Amazon</h1>
+        <p>Deliver to <h3><i class="fa-solid fa-location-dot"></i> India</h3></p>
+        <div class="searchbar">
+            <a><button>Categories</button></a>
+            <input type="text" placeholder="Search Amazon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-detail">
+        <div class="product-image">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-info">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price }}</p>
+            <p>Available Stock: {{ product.stock }}</p>
+
+            <!-- Display Coupons -->
+            {% if product.coupons %}
+                <p><strong>Coupons:</strong> {{ product.coupons }}</p>
+            {% endif %}
+
+            <!-- Display Offers -->
+            {% if product.offers %}
+                <p><strong>Special Offers:</strong> {{ product.offers }}</p>
+            {% endif %}
+
+            <!-- Add to Cart -->
+            <form action="{% url 'add_to_cart' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Reviews -->
+    <div class="reviews-section">
+        <h2>Top 3 Reviews</h2>
+        <h3>Reviews currently unavailable</h3>
+        {% for review in reviews %}
+            <div class="review">
+                <p><strong>{{ review.username }}:</strong> {{ review.text }}</p>
+                <p>Rating: {{ review.rating }}/5</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <a href="#">Back to top</a>
+        </div>
+        <div class="footer-sections">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">About Amazon</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li><a href="#">Sell on Amazon</a></li>
+                    <li><a href="#">Advertise Your Products</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

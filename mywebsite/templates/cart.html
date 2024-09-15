@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center; font-size: 2em; color: #4CAF50;">Your Cart</h1>
+
+    <ul style="list-style-type: none; padding-left: 0;">
+        {% for item in cart_items %}
+            <li style="padding: 10px; border-bottom: 1px solid #ddd;">
+                <span style="font-weight: bold;">{{ item.product.name }}</span> 
+                <span style="color: gray;">(x{{ item.quantity }})</span> - 
+                <span style="color: #4CAF50;">${{ item.product.price }}</span>
+                <a href="{% url 'delete_from_cart' item.id %}" 
+                   style="color: red; text-decoration: none; margin-left: 10px;">Remove</a>
+            </li>
+        {% empty %}
+            <li style="color: gray;">Your cart is empty.</li>
+        {% endfor %}
+    </ul>
+    <div style="text-align: center;">
+        <a href="{% url 'index' %}" 
+           style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Continue Shopping</a>
+    </div>
+{% endblock %}

@@ -73,11 +73,17 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="{% url 'index' %}">Home</a>
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'signup' %}">Sign Up</a>
-        </nav>
+        <!-- Updated Navbar -->
+            <nav>
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'login' %}">Login</a>
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 0; font-size: 18px;">Logout</button>
+                </form>
+                <a href="{% url 'signup' %}">Sign Up</a>
+            </nav>
+
     </header>
     
     <main>

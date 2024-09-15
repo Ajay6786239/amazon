@@ -71,6 +71,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'amazon.wsgi.application'
 
 # Database
@@ -132,6 +133,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'  # Where to redirect after successful login
 LOGOUT_REDIRECT_URL = '/'  # Where to redirect after logout
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

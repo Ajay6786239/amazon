@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ product.name }} - Details</title>
     <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
 <body>
     <!-- Navbar -->
     <div class="topnav">
-        <h1>Amazon</h1>
+        <h1 style="color:yellow;padding:4px;">Amazon</h1>
         <p>Deliver to <h3><i class="fa-solid fa-location-dot"></i> India</h3></p>
         <div class="searchbar">
             <a><button>Categories</button></a>
@@ -43,7 +45,7 @@
             <!-- Add to Cart -->
             <form action="{% url 'add_to_cart' product.id %}" method="post">
                 {% csrf_token %}
-                <button type="submit">Add to Cart</button>
+                <button class="cart" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%;"  type="submit">Add to Cart</button>
             </form>
         </div>
     </div>

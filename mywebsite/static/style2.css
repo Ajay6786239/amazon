@@ -132,6 +132,10 @@ body {
     margin: 10px 0;
     color: #555;
 }
+button.cart{
+    background-color: #febd69;
+    width:100px;
+}
 
 /* Responsive Styles */
 @media (max-width: 768px) {

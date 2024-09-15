@@ -1,0 +1,373 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Navbar Container */
+.nav-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Navbar Styles */
+.topnav {
+    background-color: #131921;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topnav h1 {
+    margin: 0;
+    color: yellow;
+    font-size: 24px;
+}
+
+.topnav p {
+    margin: 0;
+    padding: 5px;
+    font-size: 16px;
+}
+
+
+.topnav .searchbar {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+.topnav .searchbar input {
+    border: none;
+    padding: 8px;
+    flex: 1;
+    font-size: 16px;
+}
+
+.topnav .searchbar button {
+    background-color: #febd69;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.topnav .searchbar i {
+    padding: 8px;
+    background-color: #febd69;
+    cursor: pointer;
+}
+
+.topnav .language,
+.topnav .signin {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    margin: 0 10px;
+}
+.signin h1{
+    text-decoration: none;
+}
+
+.topnav .language button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.topnav .language img {
+    width: 24px;
+    height: 16px;
+}
+
+.topnav .language p {
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.topnav .signin p,
+.topnav .signin h1,
+.topnav .signin h3 {
+    margin: 0;
+    color: #ffffff;
+    padding: 0 10px;
+}
+
+.topnav .signin i {
+    color: #ffffff;
+}
+
+/* Second Navbar Styles */
+.secondnav {
+    background-color: #232f3e;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.secondnav .heading {
+    display: flex;
+    flex-direction: row;
+}
+
+.secondnav .heading h2 {
+    margin: 0;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+}
+
+.secondnav .heading h2:hover {
+    background-color: #37475a;
+    border-radius: 4px;
+}
+
+/* Dropdown Styles */
+.secondnav .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #37475a;
+    display: none;
+    width: 200px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+/* Show dropdown when active */
+.secondnav .heading h2.active + .dropdown {
+    display: block;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+}
+#sidebar-toggle {
+    color: white;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.sidebar.open {
+    display: block;
+    transform: translateX(0);
+}
+
+.sidebar .close-btn {
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Product Grid Styles */
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* Product Box Styles */
+.product {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.product h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.product a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #febd69;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: background-color 0.2s;
+}
+
+.product a:hover {
+    background-color: #f3a847;
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .topnav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topnav .searchbar {
+        margin: 10px 0;
+    }
+
+    .secondnav {
+        flex-direction: column;
+    }
+
+    .secondnav .heading {
+        flex-direction: column;
+    }
+
+    .secondnav .heading h2 {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product {
+        width: 100%;
+        max-width: 360px;
+    }
+}
+
+@media (max-width: 480px) {
+    .topnav h1 {
+        font-size: 20px;
+    }
+
+    .topnav .searchbar input {
+        font-size: 14px;
+    }
+
+    .topnav .searchbar button {
+        font-size: 14px;
+    }
+}
+
+/* Footer Styles */
+footer {
+    background-color: #232f3e;
+    color: white;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+footer a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+footer h3 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer li {
+    margin-bottom: 8px;
+}
+
+/* Top Link Styles */
+.footer-top {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #37475a;
+    font-weight: bold;
+}
+
+.footer-top a {
+    font-size: 16px;
+    color: white;
+}
+
+.footer-top a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Sections Layout */
+.footer-sections {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #3a4553;
+}
+
+.footer-column {
+    flex: 1;
+    padding: 0 20px;
+    min-width: 150px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #131a22;
+    font-size: 12px;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .footer-sections {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    .footer-column {
+        padding: 10px 0;
+        text-align: center;
+    }
+}

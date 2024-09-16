@@ -87,7 +87,7 @@
         </div>
     </div>
     <!-- Add Spinner in HTML -->
-<div id="spinner" style="display:none;">Loading...</div>
+<div id="spinner" style="display:none;"></div>
 
 
     <!-- Products Grid -->
@@ -253,6 +253,14 @@
     }, 300));  // Adjust the debounce delay as needed (300ms)
 
     // Optional: Clear Search Button
+    const clearButton = document.createElement('button');
+    clearButton.textContent = "Clear";
+    clearButton.style.marginLeft = '10px';
+    clearButton.addEventListener('click', () => {
+        searchBar.value = '';
+        clearHighlighting();
+        searchProducts();
+    });
     
 
     // Append clear button next to search bar
@@ -276,7 +284,7 @@
                     product.style.display = 'none';   // Hide the product
                 }
             });
-    
+           
             // Hide spinner once filtering is done
             document.getElementById('spinner').style.display = 'none';
     
@@ -286,7 +294,7 @@
             } else {
                 noResultsMessage.style.display = 'none';
             }
-        }, 500);  // Delay for 0.5 seconds to simulate loading
+        }, 700);  // Delay for 0.5 seconds to simulate loading
     }
     </script>
 </body>

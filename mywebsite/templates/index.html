@@ -14,9 +14,10 @@
         <h1>amazon</h1>
         <p class="one">Deliver to <h3 class="two"><i class="fa-solid fa-location-dot"></i >India</h3></p>
         <div class="searchbar">
-            <a><button>Categories</button></a>
-            <input type="text" placeholder="Search Amazon">
+            <a ><button class="four">Categories</button></a>
+            <input type="text" id="searchBar" placeholder="Search Amazon">
             <i class="fa-solid fa-magnifying-glass"></i>
+
         </div>
        
         <div class="signin">
@@ -85,6 +86,9 @@
             <h3>Your Account</h3>
         </div>
     </div>
+    <!-- Add Spinner in HTML -->
+<div id="spinner" style="display:none;">Loading...</div>
+
 
     <!-- Products Grid -->
     <div class="products-grid">
@@ -177,14 +181,113 @@
             });
         });
 
-        document.querySelectorAll('.secondnav .dropdown').forEach(dropdown => {
-            dropdown.addEventListener('mouseenter', () => {
-                dropdown.style.display = 'block';
-            });
-            dropdown.addEventListener('mouseleave', () => {
-                dropdown.style.display = 'none';
-            });
+        const searchBar = document.getElementById('searchBar');
+    const products = document.querySelectorAll('.products-grid .product');
+    const productsGrid = document.querySelector('.products-grid');
+
+    // Create No Results message
+    const noResultsMessage = document.createElement('p');
+    noResultsMessage.textContent = "No products match your search.";
+    noResultsMessage.style.display = 'none';
+    noResultsMessage.style.textAlign = 'center';
+    noResultsMessage.style.color = '#ff0000';  // Red color for better visibility
+    productsGrid.appendChild(noResultsMessage);
+
+    // Debounce function to limit search execution
+    let debounceTimeout;
+    function debounce(func, delay) {
+        return function() {
+            clearTimeout(debounceTimeout);
+            debounceTimeout = setTimeout(func, delay);
+        };
+    }
+
+    // Search Functionality
+    function searchProducts() {
+        const searchQuery = searchBar.value.toLowerCase();
+        let found = false;
+
+        products.forEach(product => {
+            const productName = product.querySelector('h2').textContent.toLowerCase();
+            
+            if (productName.includes(searchQuery)) {
+                product.style.display = 'block';  // Show the product
+                highlightText(product, searchQuery);  // Highlight matching text
+                found = true;
+            } else {
+                product.style.display = 'none';   // Hide the product
+            }
         });
+
+        // Show 'No Results' message if nothing found
+        if (!found) {
+            noResultsMessage.style.display = 'block';
+        } else {
+            noResultsMessage.style.display = 'none';
+        }
+    }
+
+    // Highlight matching text
+    function highlightText(product, searchQuery) {
+        const productNameElement = product.querySelector('h2');
+        const productName = productNameElement.textContent;
+        const regex = new RegExp(`(${searchQuery})`, 'gi');
+        
+        // Replace matched text with a highlighted version
+        const highlightedText = productName.replace(regex, '<span class="highlight">$1</span>');
+        productNameElement.innerHTML = highlightedText;
+    }
+
+    // Clear Highlighting
+    function clearHighlighting() {
+        products.forEach(product => {
+            const productNameElement = product.querySelector('h2');
+            productNameElement.innerHTML = productNameElement.textContent;  // Reset to original text
+        });
+    }
+
+    // Search event with debounce for better performance
+    searchBar.addEventListener('input', debounce(() => {
+        clearHighlighting();
+        searchProducts();
+    }, 300));  // Adjust the debounce delay as needed (300ms)
+
+    // Optional: Clear Search Button
+    
+
+    // Append clear button next to search bar
+    document.querySelector('.searchbar').appendChild(clearButton);
+
+    function searchProducts() {
+        document.getElementById('spinner').style.display = 'block';  // Show spinner
+    
+        setTimeout(() => {
+            const searchQuery = searchBar.value.toLowerCase();
+            let found = false;
+    
+            products.forEach(product => {
+                const productName = product.querySelector('h2').textContent.toLowerCase();
+                
+                if (productName.includes(searchQuery)) {
+                    product.style.display = 'block';  // Show the product
+                    highlightText(product, searchQuery);  // Highlight matching text
+                    found = true;
+                } else {
+                    product.style.display = 'none';   // Hide the product
+                }
+            });
+    
+            // Hide spinner once filtering is done
+            document.getElementById('spinner').style.display = 'none';
+    
+            // Show 'No Results' message if nothing found
+            if (!found) {
+                noResultsMessage.style.display = 'block';
+            } else {
+                noResultsMessage.style.display = 'none';
+            }
+        }, 500);  // Delay for 0.5 seconds to simulate loading
+    }
     </script>
 </body>
 </html>

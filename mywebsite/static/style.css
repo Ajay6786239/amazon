@@ -193,6 +193,35 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
+#spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Highlighted search term */
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+/* No results message styling */
+.products-grid p {
+    font-size: 18px;
+    font-weight: bold;
+}
 
 /* Product Grid Styles */
 .products-grid {
@@ -289,6 +318,21 @@ body {
     .two{
         display:none;
     }
+    .four{
+        display:none;
+    }
+    .topnav .searchbar {
+        display: flex;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 4px;
+        overflow: hidden;
+        flex: 1;
+        max-width: 100px;
+        margin: 0 20px;
+    }
+    
+    
 }
 
 @media (max-width: 480px) {
